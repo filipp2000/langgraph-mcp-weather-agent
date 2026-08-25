@@ -2,7 +2,7 @@ import operator
 import os
 from pathlib import Path
 from typing import Annotated, Any, TypedDict
-
+import json
 from dotenv import load_dotenv
 from langchain_core.messages import (
     AIMessage,
@@ -44,24 +44,36 @@ Tool usage:
 - If the user gives a city or place name, call get_location first.
 - Use the returned latitude and longitude with get_forecast.
 - Use the returned state_code with get_alerts when weather alerts are relevant.
-- For a general weather request such as "What's the weather in San Francisco?",
-  retrieve both the forecast and active alerts.
+- For a general weather request, retrieve both the forecast and active alerts.
 - If the user already provides latitude and longitude, you can call
   get_forecast directly.
 - If the user explicitly asks for alerts, call get_alerts directly.
 - Never invent coordinates or state codes.
 
+For multiple locations:
+- Resolve each location independently with get_location.
+- Retrieve a forecast for each location.
+- If multiple locations are in the same US state, call get_alerts
+  only once for that state.
+- Never call the same tool with identical arguments more than once
+  during the same request.
+- Reuse information already returned by previous tool calls.
+
 When answering:
-- Start directly with useful information.
 - Use clean Markdown.
+- Clearly separate forecasts by location.
+- Start directly with useful information.
 - Summarize forecast and important alerts clearly.
 - End with a short takeaway when appropriate.
 - Do not mention MCP internals.
 """
 
+AGENT_RECURSION_LIMIT = 25
+MODEL_NAME = "openai/gpt-oss-20b"
+
 # LLM configuration
 llm = ChatGroq(
-    model="openai/gpt-oss-20b",
+    model=MODEL_NAME,
     temperature=0,
     # max_completion_tokens=256,
 )
@@ -99,6 +111,73 @@ class AgentState(TypedDict):
 # Graph
 # ---------------------------------------------------------
 
+def build_tool_cache_key(
+    tool_name: str,
+    tool_args: dict[str, Any],
+) -> tuple[str, str]:
+    """
+    Build a cache key for an MCP tool call.
+
+    Calls with the same tool name and logically identical arguments
+    will produce the same key, regardless of dict key ordering.
+    """
+
+    serialized_args = json.dumps(
+        tool_args,
+        sort_keys=True,
+        separators=(",", ":"),
+    )
+
+    return tool_name, serialized_args
+
+
+def create_cached_tool_message(
+    *,
+    tool_name: str,
+    tool_args: dict[str, Any],
+    tool_call_id: str,
+) -> ToolMessage:
+    """
+    Create a ToolMessage for a duplicated tool call.
+
+    The original result already exists in the conversation state,
+    so we do not inject the full payload into the context again.
+    """
+
+    logger.info(
+        "Skipping duplicate MCP tool call=%s arguments=%s",
+        tool_name,
+        tool_args,
+    )
+
+    return ToolMessage(
+        content=(
+            "This tool call was already executed earlier "
+            "with the same arguments. Reuse the previous result."
+        ),
+        tool_call_id=tool_call_id,
+    )
+
+
+def extract_tool_output(
+    result,
+) -> str:
+    """Extract text content from an MCP tool result."""
+
+    output = "\n".join(
+        block.text
+        for block in result.content
+        if isinstance(
+            block,
+            TextContent,
+        )
+    )
+
+    return (
+        output
+        if output
+        else "Tool returned no text content."
+    )
 
 async def build_graph(session: ClientSession):
 
@@ -126,6 +205,9 @@ async def build_graph(session: ClientSession):
     ]
 
     llm_with_tools = llm.bind_tools(llm_tools)
+    
+    # Cache
+    tool_cache: dict[tuple[str, str], str] = {}
 
     # -----------------------------------------------------
     # LLM node
@@ -145,6 +227,8 @@ async def build_graph(session: ClientSession):
     # -----------------------------------------------------
     # MCP tools node
     # -----------------------------------------------------
+    
+    
 
     async def call_mcp_tools(state: AgentState):
 
@@ -158,6 +242,34 @@ async def build_graph(session: ClientSession):
             tool_args = tool_call["args"]
             tool_call_id = tool_call["id"]
 
+            # Cach tool to protect for duplicate call
+            cache_key = build_tool_cache_key(
+                tool_name,
+                tool_args,
+            )
+            
+            if cache_key in tool_cache:
+
+                tool_messages.append(
+                    create_cached_tool_message(
+                        tool_name=tool_name,
+                        tool_args=tool_args,
+                        tool_call_id=tool_call_id,
+                    )
+                )
+
+                tool_trace.append(
+                    {
+                        "name": tool_name,
+                        "arguments": tool_args,
+                        "cached": True,
+                        "is_error": False,
+                    }
+                )
+
+                continue
+            
+            # Execute MCP tool
             # Keep terminal debugging too
             logger.info(
                 "Calling MCP tool=%s arguments=%s",
@@ -165,18 +277,30 @@ async def build_graph(session: ClientSession):
                 tool_args,
             )
 
-            result = await session.call_tool(
+            try:
+                result = await session.call_tool(
+                    tool_name,
+                    arguments=tool_args,
+                )
+
+            except Exception:
+                logger.exception(
+                    "MCP tool failed tool=%s arguments=%s",
+                    tool_name,
+                    tool_args,
+                )
+                raise
+
+            logger.info(
+                "MCP tool completed tool=%s",
                 tool_name,
-                arguments=tool_args,
             )
 
-            text_blocks = [block.text for block in result.content if isinstance(block, TextContent)]
-
-            tool_output = "\n".join(text_blocks)
-
-            if not tool_output:
-                tool_output = "Tool returned no text content."
-
+            tool_output = extract_tool_output(result)
+            
+            # Cache only after successful execution
+            tool_cache[cache_key] = tool_output
+            
             tool_messages.append(
                 ToolMessage(
                     content=tool_output,
@@ -184,13 +308,18 @@ async def build_graph(session: ClientSession):
                 )
             )
 
-            # Information that Streamlit can display
             tool_trace.append(
                 {
                     "name": tool_name,
                     "arguments": tool_args,
-                    "is_error": bool(getattr(result, "isError", False)),
-                    "output": tool_output,
+                    "cached": False,
+                    "is_error": bool(
+                        getattr(
+                            result,
+                            "isError",
+                            False,
+                        )
+                    ),
                 }
             )
 
@@ -296,7 +425,7 @@ async def run_agent(
                 },
                 config={
                     # Protection against infinite agent loops
-                    "recursion_limit": 10,
+                    "recursion_limit": AGENT_RECURSION_LIMIT,
                 },
             )
 
