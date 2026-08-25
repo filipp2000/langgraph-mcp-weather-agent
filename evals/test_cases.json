@@ -149,6 +149,19 @@
     }
   },
   {
+    "id": "multi_city_same_state",
+    "query": "What's the weather in Minneapolis and Saint Paul?",
+    "expected_tools": [
+      "get_location",
+      "get_location",
+      "get_forecast",
+      "get_forecast",
+      "get_alerts"
+    ],
+    "expected_first_tool": "get_location",
+    "expected_args": {}
+  },
+  {
     "id": "seattle_general_weather",
     "query": "How is the weather in Seattle?",
     "expected_tools": [
