@@ -252,7 +252,7 @@ Create the environment and install dependencies:
 uv sync
 ```
 
-Create a local `.env` based on `.env.example`:
+Create a local `.env`:
 
 ```dotenv
 GROQ_API_KEY=your_groq_api_key_here
