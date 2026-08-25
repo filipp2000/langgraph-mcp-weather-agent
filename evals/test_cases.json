@@ -1,0 +1,324 @@
+[
+  {
+    "id": "alerts_california",
+    "query": "Are there any active weather alerts in California?",
+    "expected_tools": ["get_alerts"],
+    "expected_first_tool": "get_alerts",
+    "expected_args": {
+      "get_alerts": {
+        "state": "CA"
+      }
+    }
+  },
+  {
+    "id": "alerts_new_york",
+    "query": "Check active weather alerts for New York state.",
+    "expected_tools": ["get_alerts"],
+    "expected_first_tool": "get_alerts",
+    "expected_args": {
+      "get_alerts": {
+        "state": "NY"
+      }
+    }
+  },
+  {
+    "id": "alerts_texas_code",
+    "query": "Are there active alerts in TX?",
+    "expected_tools": ["get_alerts"],
+    "expected_first_tool": "get_alerts",
+    "expected_args": {
+      "get_alerts": {
+        "state": "TX"
+      }
+    }
+  },
+  {
+    "id": "forecast_coordinates_nyc",
+    "query": "Give me the forecast for latitude 40.7128 and longitude -74.0060.",
+    "expected_tools": ["get_forecast"],
+    "expected_first_tool": "get_forecast",
+    "expected_args": {
+      "get_forecast": {
+        "lat": {
+          "approx": 40.7128,
+          "tolerance": 0.01
+        },
+        "lon": {
+          "approx": -74.0060,
+          "tolerance": 0.01
+        }
+      }
+    }
+  },
+  {
+    "id": "forecast_coordinates_sf",
+    "query": "What's the forecast at 37.7749, -122.4194?",
+    "expected_tools": ["get_forecast"],
+    "expected_first_tool": "get_forecast",
+    "expected_args": {
+      "get_forecast": {
+        "lat": {
+          "approx": 37.7749,
+          "tolerance": 0.01
+        },
+        "lon": {
+          "approx": -122.4194,
+          "tolerance": 0.01
+        }
+      }
+    }
+  },
+  {
+    "id": "sf_general_weather",
+    "query": "What's the weather in San Francisco?",
+    "expected_tools": [
+      "get_location",
+      "get_forecast",
+      "get_alerts"
+    ],
+    "expected_first_tool": "get_location",
+    "expected_args": {
+      "get_location": {
+        "location": {
+          "contains": "San Francisco"
+        }
+      },
+      "get_forecast": {
+        "lat": {
+          "approx": 37.7749,
+          "tolerance": 0.2
+        },
+        "lon": {
+          "approx": -122.4194,
+          "tolerance": 0.2
+        }
+      },
+      "get_alerts": {
+        "state": "CA"
+      }
+    }
+  },
+  {
+    "id": "nyc_general_weather",
+    "query": "What's the weather in New York City?",
+    "expected_tools": [
+      "get_location",
+      "get_forecast",
+      "get_alerts"
+    ],
+    "expected_first_tool": "get_location",
+    "expected_args": {
+      "get_location": {
+        "location": {
+          "contains": "New York"
+        }
+      },
+      "get_forecast": {
+        "lat": {
+          "approx": 40.7128,
+          "tolerance": 0.2
+        },
+        "lon": {
+          "approx": -74.006,
+          "tolerance": 0.2
+        }
+      },
+      "get_alerts": {
+        "state": "NY"
+      }
+    }
+  },
+  {
+    "id": "miami_general_weather",
+    "query": "Tell me the weather in Miami.",
+    "expected_tools": [
+      "get_location",
+      "get_forecast",
+      "get_alerts"
+    ],
+    "expected_first_tool": "get_location",
+    "expected_args": {
+      "get_location": {
+        "location": {
+          "contains": "Miami"
+        }
+      },
+      "get_alerts": {
+        "state": "FL"
+      }
+    }
+  },
+  {
+    "id": "seattle_general_weather",
+    "query": "How is the weather in Seattle?",
+    "expected_tools": [
+      "get_location",
+      "get_forecast",
+      "get_alerts"
+    ],
+    "expected_first_tool": "get_location",
+    "expected_args": {
+      "get_location": {
+        "location": {
+          "contains": "Seattle"
+        }
+      },
+      "get_alerts": {
+        "state": "WA"
+      }
+    }
+  },
+  {
+    "id": "austin_general_weather",
+    "query": "What's the weather like in Austin, Texas?",
+    "expected_tools": [
+      "get_location",
+      "get_forecast",
+      "get_alerts"
+    ],
+    "expected_first_tool": "get_location",
+    "expected_args": {
+      "get_location": {
+        "location": {
+          "contains": "Austin"
+        }
+      },
+      "get_alerts": {
+        "state": "TX"
+      }
+    }
+  },
+  {
+    "id": "denver_general_weather",
+    "query": "Weather in Denver please.",
+    "expected_tools": [
+      "get_location",
+      "get_forecast",
+      "get_alerts"
+    ],
+    "expected_first_tool": "get_location",
+    "expected_args": {
+      "get_location": {
+        "location": {
+          "contains": "Denver"
+        }
+      },
+      "get_alerts": {
+        "state": "CO"
+      }
+    }
+  },
+  {
+    "id": "sf_forecast_only",
+    "query": "Give me only the forecast for San Francisco.",
+    "expected_tools": [
+      "get_location",
+      "get_forecast"
+    ],
+    "expected_first_tool": "get_location",
+    "expected_args": {
+      "get_location": {
+        "location": {
+          "contains": "San Francisco"
+        }
+      }
+    }
+  },
+  {
+    "id": "miami_forecast_only",
+    "query": "I only want the forecast for Miami.",
+    "expected_tools": [
+      "get_location",
+      "get_forecast"
+    ],
+    "expected_first_tool": "get_location",
+    "expected_args": {
+      "get_location": {
+        "location": {
+          "contains": "Miami"
+        }
+      }
+    }
+  },
+  {
+    "id": "sf_alerts_only",
+    "query": "Are there weather alerts for San Francisco?",
+    "expected_tools": [
+      "get_location",
+      "get_alerts"
+    ],
+    "expected_first_tool": "get_location",
+    "expected_args": {
+      "get_location": {
+        "location": {
+          "contains": "San Francisco"
+        }
+      },
+      "get_alerts": {
+        "state": "CA"
+      }
+    }
+  },
+  {
+    "id": "seattle_alerts_only",
+    "query": "Check weather alerts for Seattle.",
+    "expected_tools": [
+      "get_location",
+      "get_alerts"
+    ],
+    "expected_first_tool": "get_location",
+    "expected_args": {
+      "get_location": {
+        "location": {
+          "contains": "Seattle"
+        }
+      },
+      "get_alerts": {
+        "state": "WA"
+      }
+    }
+  },
+  {
+    "id": "no_tool_greeting",
+    "query": "Hello!",
+    "expected_tools": [],
+    "expected_first_tool": null,
+    "expected_args": {}
+  },
+  {
+    "id": "no_tool_capabilities",
+    "query": "What can you help me with?",
+    "expected_tools": [],
+    "expected_first_tool": null,
+    "expected_args": {}
+  },
+  {
+    "id": "no_tool_definition",
+    "query": "What is a weather alert?",
+    "expected_tools": [],
+    "expected_first_tool": null,
+    "expected_args": {}
+  },
+  {
+    "id": "california_alerts_code",
+    "query": "Check alerts for CA.",
+    "expected_tools": ["get_alerts"],
+    "expected_first_tool": "get_alerts",
+    "expected_args": {
+      "get_alerts": {
+        "state": "CA"
+      }
+    }
+  },
+  {
+    "id": "florida_alerts_code",
+    "query": "Any active alerts in FL?",
+    "expected_tools": ["get_alerts"],
+    "expected_first_tool": "get_alerts",
+    "expected_args": {
+      "get_alerts": {
+        "state": "FL"
+      }
+    }
+  }
+]

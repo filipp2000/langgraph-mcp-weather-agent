@@ -1,0 +1,661 @@
+{
+  "summary": {
+    "number_of_tests": 20,
+    "tool_selection_accuracy": 0.95,
+    "first_tool_accuracy": 0.95,
+    "argument_accuracy": 0.95,
+    "execution_success_rate": 1.0,
+    "unnecessary_tool_rate": 0.0,
+    "average_latency_seconds": 24.104,
+    "exception_rate": 0.05
+  },
+  "results": [
+    {
+      "id": "alerts_california",
+      "query": "Are there any active weather alerts in California?",
+      "expected_tools": [
+        "get_alerts"
+      ],
+      "actual_tools": [
+        "get_alerts"
+      ],
+      "tool_selection_correct": true,
+      "first_tool_correct": true,
+      "argument_accuracy": 1.0,
+      "execution_success_rate": 1.0,
+      "unnecessary_tool_rate": 0.0,
+      "latency_seconds": 4.434,
+      "answer": "**Active weather alerts in California (as of now)**  \n\n| Alert type | Areas affected | Severity | Key message |\n|------------|----------------|----------|-------------|\n| **Extreme Heat Warning** | Death Valley, Mojave Desert, Coachella Valley, San Diego County (mountains & inland valleys), Orange County (inland), San Bernardino & Riverside valleys, Apple & Lucerne Valleys, San Diego County mountains, etc. | Severe | Temperatures 90–118 °F (38–48 °C). Heat‑related illness risk is high. |\n| **Red Flag Warning** | Klamath National Forest, Siskiyou County, Rogue Valley, parts of California’s Fire Weather Zones 280 & 281 | Severe | Dry, windy conditions that could cause rapid fire spread. |\n| **Heat Advisory** | Riverside County mountains, San Diego County coastal areas, Orange County coastal, San Bernardino mountains, San Diego County inland valleys, Santa Ana Mountains, Santa Clarita Valley, etc. | Moderate | High temperatures 80–102 °F (27–39 °C). Stay hydrated and limit outdoor activity. |\n| **Extreme Heat Watch** | Cuyama Valley, Santa Clarita Valley, Santa Barbara County interior, Catalina & Santa Barbara Islands, Antelope Valley | Severe | Potential for temperatures 99–112 °F (37–44 °C). Prepare for heat. |\n\n**Takeaway**  \nCalifornia is experiencing widespread heat‑related warnings and a red‑flag fire warning. If you’re in the affected areas, stay cool, stay hydrated, avoid strenuous outdoor work, and follow local emergency instructions.",
+      "tool_trace": [
+        {
+          "name": "get_alerts",
+          "arguments": {
+            "state": "CA"
+          },
+          "is_error": false
+        }
+      ],
+      "exception": null
+    },
+    {
+      "id": "alerts_new_york",
+      "query": "Check active weather alerts for New York state.",
+      "expected_tools": [
+        "get_alerts"
+      ],
+      "actual_tools": [
+        "get_alerts"
+      ],
+      "tool_selection_correct": true,
+      "first_tool_correct": true,
+      "argument_accuracy": 1.0,
+      "execution_success_rate": 1.0,
+      "unnecessary_tool_rate": 0.0,
+      "latency_seconds": 3.107,
+      "answer": "**Active Weather Alerts – New York State**\n\n| Alert | Area | Severity | Key Details |\n|-------|------|----------|-------------|\n| **Beach Hazards Statement** | Northern Erie, Chautauqua, Southern Erie | Moderate | Strong currents & dangerous swimming conditions through late tonight. |\n| **Beach Hazards Statement** | Niagara, Orleans, Monroe, Wayne, Northern Cayuga, Oswego, Jefferson | Moderate | Strong currents & dangerous swimming conditions through Tuesday evening. |\n\n**Takeaway:**  \nAvoid swimming in the listed counties until the alerts expire. Stay informed for any updates.",
+      "tool_trace": [
+        {
+          "name": "get_alerts",
+          "arguments": {
+            "state": "NY"
+          },
+          "is_error": false
+        }
+      ],
+      "exception": null
+    },
+    {
+      "id": "alerts_texas_code",
+      "query": "Are there active alerts in TX?",
+      "expected_tools": [
+        "get_alerts"
+      ],
+      "actual_tools": [
+        "get_alerts"
+      ],
+      "tool_selection_correct": true,
+      "first_tool_correct": true,
+      "argument_accuracy": 1.0,
+      "execution_success_rate": 1.0,
+      "unnecessary_tool_rate": 0.0,
+      "latency_seconds": 45.24,
+      "answer": "**Active weather alerts in Texas (as of now)**  \n\n| Alert type | Areas affected | Severity | Key details | Take‑away |\n|------------|----------------|----------|-------------|-----------|\n| **Extreme Heat Warning** | Briscoe, Hall, Childress, Motley, Cottle, Dickens, King, Garza, Kent, Stonewall | Severe | Temperatures up to 113 °F; danger of heat‑related illness. | Stay hydrated, avoid outdoor activity after noon, keep pets indoors. |\n| **Heat Advisory** | Multiple counties (e.g., El Paso, Houston, Lubbock, Dallas, Austin, etc.) | Moderate | Heat index up to 109 °F; high humidity. | Limit strenuous activity, stay in air‑conditioned spaces, check on vulnerable neighbors. |\n| **Special Weather Statement** | Coastal and inland Kenedy, Willacy, Cameron | Moderate | Heat index 105–110 °F; brief periods above 111 °F. | Wear light clothing, take frequent breaks, never leave children/pets in vehicles. |\n| **Heat Advisory** | Central Texas (Bastrop, Burnet, Llano, Travis, Williamson) | Moderate | Heat index up to 110 °F; temperatures 105–107 °F. | Stay hydrated, avoid outdoor work during peak heat. |\n| **Heat Advisory** | South‑central Texas (Houston, Trinity, etc.) | Moderate | Heat index 106–110 °F. | Same precautions as above. |\n| **Heat Advisory** | West Texas (Parmer, Castro, etc.) | Moderate | Temperatures up to 109 °F. | Same precautions. |\n| **Heat Advisory** | Central‑west Texas (Eddy, Lea, etc.) | Moderate | Temperatures 103–108 °F. | Same precautions. |\n| **Heat Advisory** | North‑central Texas (Montague, Cooke, etc.) | Severe | Heat index up to 111 °F. | Same precautions. |\n\n**Bottom line:**  \nTexas is experiencing widespread heat‑related alerts—several counties have **Extreme Heat Warnings** while many others have **Heat Advisories**. Stay cool, hydrate, and avoid prolonged outdoor exposure, especially after noon. If you’re in a high‑risk area, keep an eye on local updates and follow any shelter‑in‑place or cooling‑center advisories.",
+      "tool_trace": [
+        {
+          "name": "get_alerts",
+          "arguments": {
+            "state": "TX"
+          },
+          "is_error": false
+        }
+      ],
+      "exception": null
+    },
+    {
+      "id": "forecast_coordinates_nyc",
+      "query": "Give me the forecast for latitude 40.7128 and longitude -74.0060.",
+      "expected_tools": [
+        "get_forecast"
+      ],
+      "actual_tools": [],
+      "tool_selection_correct": false,
+      "first_tool_correct": false,
+      "argument_accuracy": 0.0,
+      "execution_success_rate": 1.0,
+      "unnecessary_tool_rate": 0.0,
+      "latency_seconds": 13.597,
+      "answer": "",
+      "tool_trace": [],
+      "exception": "ExceptionGroup('unhandled errors in a TaskGroup', [ExceptionGroup('unhandled errors in a TaskGroup', [RateLimitError(\"Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kzbfe8myefsrv6tv721p439p` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6674, Requested 1410. Please try again in 630ms. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}\")])])"
+    },
+    {
+      "id": "forecast_coordinates_sf",
+      "query": "What's the forecast at 37.7749, -122.4194?",
+      "expected_tools": [
+        "get_forecast"
+      ],
+      "actual_tools": [
+        "get_forecast"
+      ],
+      "tool_selection_correct": true,
+      "first_tool_correct": true,
+      "argument_accuracy": 1.0,
+      "execution_success_rate": 1.0,
+      "unnecessary_tool_rate": 0.0,
+      "latency_seconds": 3.546,
+      "answer": "**San Francisco (37.7749 N, -122.4194 W)**  \n\n| Time | Temperature | Wind | Forecast |\n|------|-------------|------|----------|\n| **Today** | 69 °F | 7–14 mph WSW | Mostly sunny, high ~69 °F, wind gusts up to 18 mph |\n| **Tonight** | 57 °F | 6–13 mph WSW | Mostly cloudy, low ~57 °F, gusts up to 21 mph |\n| **Tuesday** | 69 °F | 6–14 mph W | Partly sunny, high ~69 °F, gusts up to 18 mph |\n| **Tuesday Night** | 58 °F | 5–14 mph WSW | Mostly cloudy, low ~58 °F, gusts up to 18 mph |\n| **Wednesday** | 72 °F | 5–13 mph WSW | Mostly sunny, high ~72 °F, gusts up to 20 mph |\n\n**Takeaway:** Expect mild, mostly sunny weather through Wednesday with temperatures in the high 60s to low 70s. Winds are light to moderate, with occasional gusts up to 20 mph. No significant alerts at this time.",
+      "tool_trace": [
+        {
+          "name": "get_forecast",
+          "arguments": {
+            "lat": 37.7749,
+            "lon": -122.4194
+          },
+          "is_error": false
+        }
+      ],
+      "exception": null
+    },
+    {
+      "id": "sf_general_weather",
+      "query": "What's the weather in San Francisco?",
+      "expected_tools": [
+        "get_location",
+        "get_forecast",
+        "get_alerts"
+      ],
+      "actual_tools": [
+        "get_location",
+        "get_forecast",
+        "get_alerts"
+      ],
+      "tool_selection_correct": true,
+      "first_tool_correct": true,
+      "argument_accuracy": 1.0,
+      "execution_success_rate": 1.0,
+      "unnecessary_tool_rate": 0.0,
+      "latency_seconds": 69.919,
+      "answer": "**San Francisco – Weather & Alerts (today)**  \n\n| Time | Temperature | Wind | Forecast |\n|------|-------------|------|----------|\n| **Today** | 69 °F | 7–14 mph WSW | Mostly sunny, high ~69 °F, wind 7–14 mph, gusts up to 18 mph |\n| **Tonight** | 57 °F | 6–13 mph WSW | Mostly cloudy, low ~57 °F, wind 6–13 mph, gusts up to 21 mph |\n| **Tuesday** | 69 °F | 6–14 mph W | Partly sunny, high ~69 °F, wind 6–14 mph, gusts up to 18 mph |\n| **Tuesday Night** | 58 °F | 5–14 mph WSW | Mostly cloudy, low ~58 °F, wind 5–14 mph, gusts up to 18 mph |\n| **Wednesday** | 72 °F | 5–13 mph WSW | Mostly sunny, high ~72 °F, wind 5–13 mph, gusts up to 20 mph |\n\n### Alerts\nNo active weather alerts are currently affecting San Francisco. (The state‑wide alerts listed are for other regions of California.)\n\n**Takeaway:** Expect a mild, mostly sunny day with temperatures in the upper 60s, cooling to the mid‑50s overnight. No special weather warnings for the city. Enjoy the day!",
+      "tool_trace": [
+        {
+          "name": "get_location",
+          "arguments": {
+            "location": "San Francisco"
+          },
+          "is_error": false
+        },
+        {
+          "name": "get_forecast",
+          "arguments": {
+            "lat": 37.7749,
+            "lon": -122.4194
+          },
+          "is_error": false
+        },
+        {
+          "name": "get_alerts",
+          "arguments": {
+            "state": "CA"
+          },
+          "is_error": false
+        }
+      ],
+      "exception": null
+    },
+    {
+      "id": "nyc_general_weather",
+      "query": "What's the weather in New York City?",
+      "expected_tools": [
+        "get_location",
+        "get_forecast",
+        "get_alerts"
+      ],
+      "actual_tools": [
+        "get_location",
+        "get_forecast",
+        "get_alerts"
+      ],
+      "tool_selection_correct": true,
+      "first_tool_correct": true,
+      "argument_accuracy": 1.0,
+      "execution_success_rate": 1.0,
+      "unnecessary_tool_rate": 0.0,
+      "latency_seconds": 28.03,
+      "answer": "**New York City – Weather & Alerts (NY)**  \n\n| Time | Temperature | Wind | Forecast | Precipitation |\n|------|-------------|------|----------|---------------|\n| **Today** | 81 °F | 6–14 mph SW | Mostly sunny, isolated showers & thunderstorms after 1 pm | 20 % |\n| **Tonight** | 67 °F | 6–13 mph W | Mostly clear, isolated showers & thunderstorms before 8 pm | 20 % |\n| **Tuesday** | 81 °F | 6–9 mph W | Sunny, slight chance of showers & thunderstorms after 2 pm | 20 % |\n| **Tuesday Night** | 68 °F | 6–9 mph NW | Mostly clear, slight chance of showers & thunderstorms before 8 pm | 20 % |\n| **Wednesday** | 81 °F | 2–8 mph W | Sunny | — |\n\n### Active Alerts (NY)\n- **Beach Hazards Statement** – *Northern Erie, Chautauqua, Southern Erie*  \n  *Strong currents and dangerous swimming conditions through late tonight.*  \n  **Stay out of the water.**\n\n- **Beach Hazards Statement** – *Niagara, Orleans, Monroe, Wayne, Northern Cayuga, Oswego, Jefferson*  \n  *Strong currents and dangerous swimming conditions through Tuesday evening.*  \n  **Stay out of the water.**\n\n---\n\n**Takeaway:** Expect warm, mostly sunny days with a 20 % chance of showers or thunderstorms. If you’re heading to the coast, avoid swimming due to strong currents.",
+      "tool_trace": [
+        {
+          "name": "get_location",
+          "arguments": {
+            "location": "New York City"
+          },
+          "is_error": false
+        },
+        {
+          "name": "get_forecast",
+          "arguments": {
+            "lat": 40.7143,
+            "lon": -74.006
+          },
+          "is_error": false
+        },
+        {
+          "name": "get_alerts",
+          "arguments": {
+            "state": "NY"
+          },
+          "is_error": false
+        }
+      ],
+      "exception": null
+    },
+    {
+      "id": "miami_general_weather",
+      "query": "Tell me the weather in Miami.",
+      "expected_tools": [
+        "get_location",
+        "get_forecast",
+        "get_alerts"
+      ],
+      "actual_tools": [
+        "get_location",
+        "get_forecast",
+        "get_alerts"
+      ],
+      "tool_selection_correct": true,
+      "first_tool_correct": true,
+      "argument_accuracy": 1.0,
+      "execution_success_rate": 1.0,
+      "unnecessary_tool_rate": 0.0,
+      "latency_seconds": 20.608,
+      "answer": "**Miami Weather (Today & Tonight)**  \n- **Today:** 89 °F, 3–10 mph SE wind. Chance of showers & thunderstorms 8 am–noon (30 % chance). Mostly sunny otherwise. Heat index up to 105 °F.  \n- **Tonight:** 83 °F, 3–9 mph SE wind. Partly cloudy, low 83 °F. Heat index up to 100 °F.\n\n**Upcoming Days**  \n- **Tuesday:** 90 °F, 5–10 mph SE. Slight chance of showers after 3 pm (20 % chance).  \n- **Tuesday Night:** 83 °F, 9 mph SE. Chance of showers 50 %.  \n- **Wednesday:** 89 °F, 7–10 mph SE. High chance of showers & thunderstorms (70 % chance).\n\n---\n\n### Alerts for Florida (State-wide)\n\n**Heat Advisory**  \n- **Areas:** Inland Bay, Calhoun, Inland Gulf, Inland Franklin, Gadsden, Inland Wakulla, Coastal Bay, Coastal Gulf, Coastal Franklin, Coastal Wakulla, Northern & Southern Liberty.  \n- **Severity:** Moderate  \n- **When:** Noon – 7 pm EDT today  \n- **Impact:** Heat index up to 110 °F; risk of heat illness.  \n- **Action:** Stay hydrated, stay in air‑conditioned spaces, avoid strenuous outdoor activity, wear lightweight clothing, and monitor for heat exhaustion or heat stroke symptoms.\n\n---\n\n**Takeaway:** Expect hot, humid conditions today with a moderate chance of showers in the morning. A heat advisory is in effect—stay cool and hydrated.",
+      "tool_trace": [
+        {
+          "name": "get_location",
+          "arguments": {
+            "location": "Miami"
+          },
+          "is_error": false
+        },
+        {
+          "name": "get_forecast",
+          "arguments": {
+            "lat": 25.7743,
+            "lon": -80.1937
+          },
+          "is_error": false
+        },
+        {
+          "name": "get_alerts",
+          "arguments": {
+            "state": "FL"
+          },
+          "is_error": false
+        }
+      ],
+      "exception": null
+    },
+    {
+      "id": "seattle_general_weather",
+      "query": "How is the weather in Seattle?",
+      "expected_tools": [
+        "get_location",
+        "get_forecast",
+        "get_alerts"
+      ],
+      "actual_tools": [
+        "get_location",
+        "get_forecast",
+        "get_alerts"
+      ],
+      "tool_selection_correct": true,
+      "first_tool_correct": true,
+      "argument_accuracy": 1.0,
+      "execution_success_rate": 1.0,
+      "unnecessary_tool_rate": 0.0,
+      "latency_seconds": 29.442,
+      "answer": "**Seattle Weather (Today & Tonight)**  \n- **Today:** Sunny, high ≈ 76 °F, wind 6–10 mph N.  \n- **Tonight:** Mostly clear, low ≈ 58 °F, wind 1–9 mph NNE.  \n\n**Tomorrow**  \n- **Tuesday:** Sunny, high ≈ 86 °F, wind 1–8 mph WSW.  \n- **Tuesday Night:** Mostly clear, low ≈ 59 °F, wind 6–9 mph SSW.  \n- **Wednesday:** Mostly sunny, high ≈ 77 °F, wind ≈ 7 mph SSW.  \n\n**Alerts**  \n- **Air‑Quality Alerts** for several Washington counties (Chelan, Douglas, Okanogan, Kittitas) due to wildfire smoke.  \n  - PM2.5 may reach *Unhealthy* levels.  \n  - Reduce outdoor exposure, especially during early morning and overnight hours.  \n\n**Takeaway**  \nEnjoy the sunny days, but stay mindful of the wildfire‑related air‑quality alerts—limit strenuous outdoor activities when PM2.5 is high.",
+      "tool_trace": [
+        {
+          "name": "get_location",
+          "arguments": {
+            "location": "Seattle"
+          },
+          "is_error": false
+        },
+        {
+          "name": "get_forecast",
+          "arguments": {
+            "lat": 47.6062,
+            "lon": -122.3321
+          },
+          "is_error": false
+        },
+        {
+          "name": "get_alerts",
+          "arguments": {
+            "state": "WA"
+          },
+          "is_error": false
+        }
+      ],
+      "exception": null
+    },
+    {
+      "id": "austin_general_weather",
+      "query": "What's the weather like in Austin, Texas?",
+      "expected_tools": [
+        "get_location",
+        "get_forecast",
+        "get_alerts"
+      ],
+      "actual_tools": [
+        "get_location",
+        "get_forecast",
+        "get_alerts"
+      ],
+      "tool_selection_correct": true,
+      "first_tool_correct": true,
+      "argument_accuracy": 1.0,
+      "execution_success_rate": 1.0,
+      "unnecessary_tool_rate": 0.0,
+      "latency_seconds": 58.189,
+      "answer": "**Austin, TX – Weather Snapshot**\n\n| Time | Temperature | Wind | Forecast | Heat Index |\n|------|-------------|------|----------|------------|\n| **Today** | 106 °F (high) | 5 mph S | Sunny | 104 °F |\n| **Tonight** | 78 °F (low) | 5–10 mph S | Mostly clear | 105 °F |\n| **Tuesday** | 105 °F (high) | 5–10 mph S | Sunny | 105 °F |\n| **Tuesday Night** | 79 °F (low) | 5–10 mph S | Mostly clear | 106 °F |\n| **Wednesday** | 104 °F (high) | 0–5 mph SSW | Sunny | – |\n\n**Active Alerts for Austin (TX)**  \n- **Heat Advisory** – Peak heat index 106–110 °F, affecting portions of south‑central and southeast Texas, including Austin.  \n  *Stay hydrated, avoid outdoor activity from 2–7 PM, and seek air‑conditioned shelter.*\n\n**Takeaway**  \nExpect scorching temperatures today and tomorrow with heat indices above 100 °F. Stay cool, drink plenty of water, and limit outdoor exposure during peak heat hours.",
+      "tool_trace": [
+        {
+          "name": "get_location",
+          "arguments": {
+            "location": "Austin, Texas"
+          },
+          "is_error": false
+        },
+        {
+          "name": "get_forecast",
+          "arguments": {
+            "lat": 30.2672,
+            "lon": -97.7431
+          },
+          "is_error": false
+        },
+        {
+          "name": "get_alerts",
+          "arguments": {
+            "state": "TX"
+          },
+          "is_error": false
+        }
+      ],
+      "exception": null
+    },
+    {
+      "id": "denver_general_weather",
+      "query": "Weather in Denver please.",
+      "expected_tools": [
+        "get_location",
+        "get_forecast",
+        "get_alerts"
+      ],
+      "actual_tools": [
+        "get_location",
+        "get_forecast",
+        "get_alerts"
+      ],
+      "tool_selection_correct": true,
+      "first_tool_correct": true,
+      "argument_accuracy": 1.0,
+      "execution_success_rate": 1.0,
+      "unnecessary_tool_rate": 0.0,
+      "latency_seconds": 24.534,
+      "answer": "**Denver, CO – Weather Overview**\n\n| Time | Temperature | Wind | Forecast | Precipitation Chance |\n|------|-------------|------|----------|----------------------|\n| **Today** | 93 °F (high) | 7 mph ENE | Mostly sunny, 40 % chance of showers/thunderstorms after 1 pm | 40 % |\n| **Tonight** | 62 °F (low) | 3–9 mph WSW | Partly cloudy, 30 % chance of showers/thunderstorms before 9 pm | 30 % |\n| **Tuesday** | 89 °F (high) | 2–8 mph ENE | Mostly sunny, 30 % chance of showers/thunderstorms after 2 pm | 30 % |\n| **Tuesday Night** | 60 °F (low) | 2–7 mph SSE | Partly cloudy, 40 % chance of showers/thunderstorms before midnight | 40 % |\n| **Wednesday** | 88 °F (high) | 2–6 mph NE | Mostly sunny, 50 % chance of showers/thunderstorms after noon | 50 % |\n\n### Active Alert\n- **Flash Flood Watch** – Wet Mountains area (6300–10,000 ft) and Pueblo vicinity.  \n  *Heavy rainfall and potential debris flows expected from 3 PM MDT through the evening. Stay updated and prepare for possible flash flooding.*\n\n---\n\n**Takeaway:** Expect hot, mostly sunny days with a moderate chance of afternoon showers and thunderstorms. Keep an eye on the flash flood watch, especially if you’re near the Wet Mountains or Pueblo area.",
+      "tool_trace": [
+        {
+          "name": "get_location",
+          "arguments": {
+            "location": "Denver"
+          },
+          "is_error": false
+        },
+        {
+          "name": "get_forecast",
+          "arguments": {
+            "lat": 39.7392,
+            "lon": -104.9847
+          },
+          "is_error": false
+        },
+        {
+          "name": "get_alerts",
+          "arguments": {
+            "state": "CO"
+          },
+          "is_error": false
+        }
+      ],
+      "exception": null
+    },
+    {
+      "id": "sf_forecast_only",
+      "query": "Give me only the forecast for San Francisco.",
+      "expected_tools": [
+        "get_location",
+        "get_forecast"
+      ],
+      "actual_tools": [
+        "get_location",
+        "get_forecast"
+      ],
+      "tool_selection_correct": true,
+      "first_tool_correct": true,
+      "argument_accuracy": 1.0,
+      "execution_success_rate": 1.0,
+      "unnecessary_tool_rate": 0.0,
+      "latency_seconds": 18.921,
+      "answer": "**San Francisco Weather Forecast**\n\n| Time | Temperature | Wind | Forecast |\n|------|-------------|------|----------|\n| **Today** | 69 °F | 7–14 mph WSW | Mostly sunny. High near 69 °F, dropping to ~66 °F in the afternoon. Gusts up to 18 mph. |\n| **Tonight** | 57 °F | 6–13 mph WSW | Mostly cloudy. Low around 57 °F. Gusts up to 21 mph. |\n| **Tuesday** | 69 °F | 6–14 mph W | Partly sunny. High near 69 °F, dropping to ~67 °F in the afternoon. Gusts up to 18 mph. |\n| **Tuesday Night** | 58 °F | 5–14 mph WSW | Mostly cloudy. Low around 58 °F. Gusts up to 18 mph. |\n| **Wednesday** | 72 °F | 5–13 mph WSW | Mostly sunny. High near 72 °F. Gusts up to 20 mph. |\n\n**Takeaway:** Expect mild, mostly sunny conditions through Wednesday with temperatures hovering in the high 60s to low 70s and gentle west‑southwest winds. No significant weather alerts at this time.",
+      "tool_trace": [
+        {
+          "name": "get_location",
+          "arguments": {
+            "location": "San Francisco"
+          },
+          "is_error": false
+        },
+        {
+          "name": "get_forecast",
+          "arguments": {
+            "lat": 37.7749,
+            "lon": -122.4194
+          },
+          "is_error": false
+        }
+      ],
+      "exception": null
+    },
+    {
+      "id": "miami_forecast_only",
+      "query": "I only want the forecast for Miami.",
+      "expected_tools": [
+        "get_location",
+        "get_forecast"
+      ],
+      "actual_tools": [
+        "get_location",
+        "get_forecast"
+      ],
+      "tool_selection_correct": true,
+      "first_tool_correct": true,
+      "argument_accuracy": 1.0,
+      "execution_success_rate": 1.0,
+      "unnecessary_tool_rate": 0.0,
+      "latency_seconds": 15.755,
+      "answer": "**Miami Weather Forecast**\n\n| Day | High / Low | Main Conditions | Chance of Precipitation |\n|-----|------------|-----------------|--------------------------|\n| **Today** | 89 °F / 83 °F | Mostly sunny, 30 % chance of showers & thunderstorms (8 am–noon) | 30 % |\n| **Tonight** | — / 83 °F | Partly cloudy | — |\n| **Tuesday** | 90 °F / 83 °F | Mostly sunny, slight chance of showers & thunderstorms after 3 pm | 20 % |\n| **Tuesday Night** | — / 83 °F | Partly cloudy, chance of showers & thunderstorms | 50 % |\n| **Wednesday** | 89 °F / 83 °F | Mostly sunny, high chance of showers & thunderstorms (morning–afternoon) | 70 % |\n\n**Key Points**\n\n- Heat index can reach **105 °F** today and **105 °F** on Tuesday.\n- Winds are generally **SE** at 3–10 mph today, increasing to 5–10 mph on Tuesday.\n- Expect light to moderate rainfall (0.1–0.25 in) during the day.\n\n**Takeaway:** Stay hydrated and be prepared for scattered showers, especially in the afternoon and evening.",
+      "tool_trace": [
+        {
+          "name": "get_location",
+          "arguments": {
+            "location": "Miami"
+          },
+          "is_error": false
+        },
+        {
+          "name": "get_forecast",
+          "arguments": {
+            "lat": 25.7743,
+            "lon": -80.1937
+          },
+          "is_error": false
+        }
+      ],
+      "exception": null
+    },
+    {
+      "id": "sf_alerts_only",
+      "query": "Are there weather alerts for San Francisco?",
+      "expected_tools": [
+        "get_location",
+        "get_alerts"
+      ],
+      "actual_tools": [
+        "get_location",
+        "get_alerts"
+      ],
+      "tool_selection_correct": true,
+      "first_tool_correct": true,
+      "argument_accuracy": 1.0,
+      "execution_success_rate": 1.0,
+      "unnecessary_tool_rate": 0.0,
+      "latency_seconds": 53.464,
+      "answer": "**Weather alerts for San Francisco**\n\n- **None** – The current U.S. National Weather Service alerts for California do not include San Francisco or its surrounding counties.  \n- The active alerts listed (Extreme Heat, Red Flag, Heat Advisory, etc.) cover other regions such as the Mojave Desert, the Inland Empire, and coastal areas of Southern California.\n\n**Takeaway**  \nSan Francisco is currently clear of any active weather warnings. Keep an eye on local news or the NWS website for any updates that might affect the Bay Area.",
+      "tool_trace": [
+        {
+          "name": "get_location",
+          "arguments": {
+            "location": "San Francisco"
+          },
+          "is_error": false
+        },
+        {
+          "name": "get_alerts",
+          "arguments": {
+            "state": "CA"
+          },
+          "is_error": false
+        }
+      ],
+      "exception": null
+    },
+    {
+      "id": "seattle_alerts_only",
+      "query": "Check weather alerts for Seattle.",
+      "expected_tools": [
+        "get_location",
+        "get_alerts"
+      ],
+      "actual_tools": [
+        "get_location",
+        "get_alerts"
+      ],
+      "tool_selection_correct": true,
+      "first_tool_correct": true,
+      "argument_accuracy": 1.0,
+      "execution_success_rate": 1.0,
+      "unnecessary_tool_rate": 0.0,
+      "latency_seconds": 19.747,
+      "answer": "**Weather alerts for Seattle**\n\nNo active weather alerts are currently issued for Seattle (King County, WA).  \n\nIf you’re planning outdoor activities, it’s still a good idea to check local air‑quality monitors, as some alerts are in effect for other parts of Washington.  \n\n**Takeaway:** Seattle is clear of alerts right now, but stay tuned for any updates.",
+      "tool_trace": [
+        {
+          "name": "get_location",
+          "arguments": {
+            "location": "Seattle"
+          },
+          "is_error": false
+        },
+        {
+          "name": "get_alerts",
+          "arguments": {
+            "state": "WA"
+          },
+          "is_error": false
+        }
+      ],
+      "exception": null
+    },
+    {
+      "id": "no_tool_greeting",
+      "query": "Hello!",
+      "expected_tools": [],
+      "actual_tools": [],
+      "tool_selection_correct": true,
+      "first_tool_correct": true,
+      "argument_accuracy": 1.0,
+      "execution_success_rate": 1.0,
+      "unnecessary_tool_rate": 0.0,
+      "latency_seconds": 3.348,
+      "answer": "Hello! How can I help you with the weather today?",
+      "tool_trace": [],
+      "exception": null
+    },
+    {
+      "id": "no_tool_capabilities",
+      "query": "What can you help me with?",
+      "expected_tools": [],
+      "actual_tools": [],
+      "tool_selection_correct": true,
+      "first_tool_correct": true,
+      "argument_accuracy": 1.0,
+      "execution_success_rate": 1.0,
+      "unnecessary_tool_rate": 0.0,
+      "latency_seconds": 4.305,
+      "answer": "I’m a concise weather assistant for U.S. locations.  \n- **Forecasts**: Ask for the weather in a city, ZIP code, or give me latitude/longitude.  \n- **Alerts**: Request active weather alerts for a state or a specific location.  \n- **Both**: I can give you the forecast *and* any relevant alerts in one response.  \n\nJust let me know what you need!",
+      "tool_trace": [],
+      "exception": null
+    },
+    {
+      "id": "no_tool_definition",
+      "query": "What is a weather alert?",
+      "expected_tools": [],
+      "actual_tools": [],
+      "tool_selection_correct": true,
+      "first_tool_correct": true,
+      "argument_accuracy": 1.0,
+      "execution_success_rate": 1.0,
+      "unnecessary_tool_rate": 0.0,
+      "latency_seconds": 4.888,
+      "answer": "A **weather alert** is an official warning issued by a national or local weather agency (such as the National Weather Service in the U.S.) to inform the public about an imminent or ongoing hazardous weather event. Alerts are categorized by severity (e.g., Watch, Warning, Advisory) and are designed to help people take appropriate action—such as seeking shelter, evacuating, or preparing for potential damage—to protect life and property.",
+      "tool_trace": [],
+      "exception": null
+    },
+    {
+      "id": "california_alerts_code",
+      "query": "Check alerts for CA.",
+      "expected_tools": [
+        "get_alerts"
+      ],
+      "actual_tools": [
+        "get_alerts"
+      ],
+      "tool_selection_correct": true,
+      "first_tool_correct": true,
+      "argument_accuracy": 1.0,
+      "execution_success_rate": 1.0,
+      "unnecessary_tool_rate": 0.0,
+      "latency_seconds": 49.378,
+      "answer": "**California Weather Alerts (current)**  \n\n| Event | Area | Severity | Key Details |\n|-------|------|----------|-------------|\n| **Extreme Heat Warning** | Lake Havasu, Fort Mohave, Death Valley, Mojave Desert, etc. | Severe | Temperatures 90–118 °F; overnight lows 80–90 °F. |\n| **Red Flag Warning** | Klamath National Forest, Siskiyou County, Rogue Valley, etc. | Severe | Winds 10–30 mph, humidity 8–15 %; rapid fire spread risk. |\n| **Extreme Heat Warning** | Apple & Lucerne Valleys | Severe | Upper‑90s to 108 °F. |\n| **Heat Advisory** | Riverside County Mountains | Moderate | 90–102 °F. |\n| **Extreme Heat Warning** | San Diego County Mountains & Inland Valleys | Severe | 90–104 °F (up to 109 °F inland). |\n| **Heat Advisory** | San Diego County Coastal Areas | Moderate | 80–90 °F. |\n| **Heat Advisory** | Orange County Coastal & Inland | Moderate | 80–104 °F. |\n| **Heat Advisory** | San Bernardino County Mountains | Moderate | 90–95 °F. |\n| **Extreme Heat Warning** | Coachella Valley, San Diego Deserts, etc. | Severe | 110–116 °F. |\n| **Extreme Heat Warning** | Santa Ana Mountains & Foothills | Severe | 90–105 °F. |\n| **Extreme Heat Warning** | Inland Empire (San Bernardino & Riverside) | Severe | 106–110 °F. |\n| **Heat Advisory** | Catalina & Santa Barbara Islands, Los Angeles Coast | Moderate | 80–94 °F. |\n| **Heat Advisory** | Cuyama Valley | Moderate | 99 °F. |\n| **Heat Advisory** | Santa Clarita Valley, Ventura County, etc. | Moderate | 107 °F. |\n| **Extreme Heat Watch** | Cuyama Valley, Santa Clarita Valley, etc. | Severe | 99–112 °F. |\n| **Extreme Heat Watch** | Antelope Valley | Severe | Up to 112 °F. |\n\n**Takeaway:**  \nCalifornia is experiencing widespread extreme heat and fire‑weather conditions. Stay hydrated, limit outdoor activity, and monitor local alerts for updates. If you’re in a high‑risk area, consider cooling shelters or staying indoors.",
+      "tool_trace": [
+        {
+          "name": "get_alerts",
+          "arguments": {
+            "state": "CA"
+          },
+          "is_error": false
+        }
+      ],
+      "exception": null
+    },
+    {
+      "id": "florida_alerts_code",
+      "query": "Any active alerts in FL?",
+      "expected_tools": [
+        "get_alerts"
+      ],
+      "actual_tools": [
+        "get_alerts"
+      ],
+      "tool_selection_correct": true,
+      "first_tool_correct": true,
+      "argument_accuracy": 1.0,
+      "execution_success_rate": 1.0,
+      "unnecessary_tool_rate": 0.0,
+      "latency_seconds": 11.619,
+      "answer": "**Active Weather Alerts in Florida**\n\n| Alert | Area | Severity | Key Details |\n|-------|------|----------|-------------|\n| **Heat Advisory** | Inland Bay, Calhoun, Inland Gulf, Inland Franklin, Gadsden, Inland Wakulla, Coastal Bay, Coastal Gulf, Coastal Franklin, Coastal Wakulla, Northern Liberty, Southern Liberty | Moderate | Heat index up to 110 °F (≈ 43 °C). <br>• **When:** Noon – 7 PM EDT today. <br>• **Impact:** Risk of heat‑related illnesses. <br>• **Action:** Stay hydrated, avoid outdoor exertion, seek air‑conditioned spaces, monitor for heat exhaustion or stroke. |\n\n**Takeaway:**  \nIf you’re in any of the listed areas, stay cool, drink water, and limit outdoor activity until the advisory ends. Stay alert for symptoms of heat stress.",
+      "tool_trace": [
+        {
+          "name": "get_alerts",
+          "arguments": {
+            "state": "FL"
+          },
+          "is_error": false
+        }
+      ],
+      "exception": null
+    }
+  ]
+}

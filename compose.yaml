@@ -1,0 +1,15 @@
+services:
+  weather-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: langgraph-mcp-weather-agent:local
+
+    env_file:
+      - .env
+
+    ports:
+      - "8501:8501"
+
+    restart: unless-stopped
