@@ -2,7 +2,7 @@
 
 A production-oriented **AI agent** that uses **LangGraph** for orchestration and the **Model Context Protocol (MCP)** as its tool boundary to resolve US locations, retrieve weather forecasts, and surface active weather alerts.
 
-It focuses on **agent orchestration, dynamic tool discovery, async MCP execution, observability, evaluation, reliability safeguards, containerization, and reproducible local development**.
+It focuses on **agent orchestration, dynamic tool discovery, async MCP execution, monitoring/observability, evaluation, reliability safeguards, containerization, and reproducible local development**.
 
 
 ## Tech Stack
